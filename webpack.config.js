@@ -24,5 +24,16 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()]
+  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
+  devServer: {
+    contentBase: "./dist",
+    proxy: {
+      "*": {
+        target: "https://impraise-shorty.herokuapp.com/",
+        pathRewrite: { "^/api": "" },
+        secure: false,
+        changeOrigin: true,
+      }
+    }
+  }
 };

@@ -1,6 +1,8 @@
-import React from "react";
-import { render } from "react-dom";
+import "./index.scss";
+import { create } from "./api";
 
-import './index.scss';
-
-render(<div />, document.body);
+Promise.all([import('react-dom'), import('react')])
+.then(([ReactDOM, React]) => {
+  ReactDOM.render(<div />, document.body);
+});
+window.create = create;
