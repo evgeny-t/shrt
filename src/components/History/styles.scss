@@ -18,6 +18,7 @@
   color: $accent-color;
   background: transparent;
   border: none;
+  margin-left: 10px;
   padding: 10px 15px;
   border-radius: $bradius;
   @include typography-normal();

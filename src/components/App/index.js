@@ -15,7 +15,11 @@ export class App extends React.Component {
       <div>
         <Header />
         <Shoort onShorten={this._handleShorten} />
-        <History links={this.state.links} stats={this.state.shortCodeToStat} />
+        <History
+          links={this.state.links}
+          stats={this.state.shortCodeToStat}
+          onClear={this._handleClear}
+        />
       </div>
     );
   }
@@ -37,9 +41,15 @@ export class App extends React.Component {
   componentDidMount() {
     this.state.links.reduce(
       (acc, link) =>
-        acc
-          .then(() => stats(link.shortcode))
-          .then(stat => this.setState({ [link.shortcode]: stat })),
+        acc.then(() => stats(link.shortcode)).then(stat =>
+          this.setState(state => ({
+            ...state,
+            shortCodeToStat: {
+              ...state.shortCodeToStat,
+              [link.shortcode]: stat
+            }
+          }))
+        ),
       Promise.resolve()
     );
   }
@@ -60,5 +70,9 @@ export class App extends React.Component {
           };
         });
       });
+  };
+
+  _handleClear = () => {
+    this.setState({ links: [], shortCodeToStat: {} });
   };
 }
