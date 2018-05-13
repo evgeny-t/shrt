@@ -1,0 +1,26 @@
+@mixin typography-logo() {
+  font-size: 47px;
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+}
+@mixin typography-section-heading() {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+}
+@mixin typography-normal() {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+@mixin typography-urlbody() {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+@mixin typography-table-headings() {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  font-variant-caps: all-small-caps;
+}

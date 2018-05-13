@@ -1,0 +1,33 @@
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+.main-header {
+  // outline: 4px dashed blue;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  box-sizing: border-box;
+}
+.main-header__logo {
+  @include typography-logo();
+
+  position: relative;
+  color: $accent-color;
+  box-sizing: border-box;
+}
+.main-header__logo::after {
+  content: "";
+  position: absolute;
+  background: $accent-color;
+  display: block;
+  top: calc(100% - #{$bradius * 2});
+  width: 100%;
+  height: $stripe-width;
+  border-radius: $bradius;
+}
+
+.main-header__motto {
+  @include typography-normal();
+  color: $unimportant-color;
+}

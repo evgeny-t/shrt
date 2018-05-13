@@ -1,11 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import "./index.scss";
 import { create, get, stats } from "./api";
+import { Header } from "./components";
 
-Promise.all([import("react-dom"), import("react")]).then(
-  ([ReactDOM, React]) => {
-    ReactDOM.render(<div />, document.body);
-  }
-);
+ReactDOM.render(<Header />, document.body);
 
 create("http://example.com")
   .then(({ shortcode }) => stats(shortcode))
