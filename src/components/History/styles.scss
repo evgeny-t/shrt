@@ -1,0 +1,47 @@
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+.history {
+}
+.history__header {
+  // outline: 4px dashed lightgreen;
+  display: flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+.history__title {
+  @include typography-section-heading();
+}
+.history__clear-btn {
+  cursor: pointer;
+  color: $accent-color;
+  background: transparent;
+  border: none;
+  padding: 10px 15px;
+  border-radius: $bradius;
+  @include typography-normal();
+}
+
+.history__table {
+  // outline: 3px dashed lightsalmon;
+  width: 100%;
+  text-align: center;
+  @include typography-normal();
+}
+.history__table th {
+  @include typography-table-headings();
+  color: $secondary-color;
+}
+.history__link {
+  text-align: left;
+}
+.history__visits {
+  min-width: 100px;
+}
+.history__last-visited {
+  min-width: 120px;
+}
+.history__row {
+  height: 50px;
+}
