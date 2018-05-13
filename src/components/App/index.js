@@ -2,6 +2,17 @@ import React from "react";
 import { Header, Shoort, History } from "../../components";
 import { create, get, stats } from "../../api";
 
+const restore = key => {
+  let item = localStorage.getItem(key);
+  try {
+    item = JSON.parse(item);
+    return item;
+  } catch (error) {
+    console.warn(error);
+    return null;
+  }
+};
+
 export class App extends React.Component {
   state = {
     links: [],
@@ -23,17 +34,18 @@ export class App extends React.Component {
   }
 
   componentWillMount() {
-    let links = localStorage.getItem("links") || [];
-    try {
-      links = JSON.parse(links);
-    } catch (error) {
-      console.warn(error);
-    }
-    this.setState({ links });
+    this.setState({
+      links: restore("links") || [],
+      shortCodeToStat: restore("shortCodeToStat") || {}
+    });
   }
 
   componentDidUpdate() {
     localStorage.setItem("links", JSON.stringify(this.state.links));
+    localStorage.setItem(
+      "shortCodeToStat",
+      JSON.stringify(this.state.shortCodeToStat)
+    );
   }
 
   componentDidMount() {
