@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -17,7 +19,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    // new BundleAnalyzerPlugin()
+  ],
   optimization: {
     splitChunks: {
       cacheGroups: {

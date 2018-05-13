@@ -1,6 +1,7 @@
 import React from "react";
-import "./styles.scss";
+import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 
+import "./styles.scss";
 import { LinkInfo } from "../LinkInfo";
 
 export class History extends React.Component {
@@ -20,6 +21,17 @@ export class History extends React.Component {
             </tr>
           </thead>
           <tbody>
+            {this.props.links.map(link => (
+              <tr key={link.shortcode} className="history__row">
+                <td className="history__link">
+                  <LinkInfo shortcode={link.shortcode} url={link.url} />
+                </td>
+                <td className="history__visits">{link.redirectCount}</td>
+                <td className="history__last-visited">
+                  {distanceInWordsToNow(link.startDate)}
+                </td>
+              </tr>
+            ))}
             <tr className="history__row">
               <td className="history__link">
                 <LinkInfo
