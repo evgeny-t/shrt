@@ -1,16 +1,14 @@
 {
+  "plugins": ["@babel/plugin-syntax-dynamic-import"],
   "presets": [
     [
       "@babel/preset-env",
       {
         "targets": {
           "chrome": 64
-        },
-        "modules": false,
-        "loose": true
+        }
       }
     ],
-    "@babel/react",
-    ["@babel/stage-0", { "decoratorsLegacy": true }]
+    "@babel/react"
   ]
 }

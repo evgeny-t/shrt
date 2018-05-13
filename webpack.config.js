@@ -2,21 +2,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "production",
-  devServer: {
-    contentBase: "./dist"
-  },
+  mode: "development",
+  devtool: "source-map",
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"]
-          }
-        }
+        use: "babel-loader"
       },
       {
         test: /\.scss$/,
@@ -24,16 +17,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
-  devServer: {
-    contentBase: "./dist",
-    proxy: {
-      "*": {
-        target: "https://impraise-shorty.herokuapp.com/",
-        pathRewrite: { "^/api": "" },
-        secure: false,
-        changeOrigin: true,
-      }
-    }
-  }
+  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()]
 };
