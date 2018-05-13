@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   devtool: "source-map",
   module: {
     rules: [
@@ -17,5 +17,16 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()]
+  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  }
 };
