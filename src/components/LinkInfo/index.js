@@ -13,7 +13,7 @@ export class LinkInfo extends React.Component {
     return (
       <div className="link-info">
         <div className="link-info__shortened">
-          shooooort.com/<span className="link-info__accent">{shortcode}</span>
+          impraise-shorty.herokuapp.com/<span className="link-info__accent">{shortcode}</span>
           <span className="link-info__hint">Click to copy this link</span>
         </div>
         <div className="link-info__original">{url}</div>

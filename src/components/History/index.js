@@ -21,17 +21,20 @@ export class History extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.links.map(link => (
-              <tr key={link.shortcode} className="history__row">
-                <td className="history__link">
-                  <LinkInfo shortcode={link.shortcode} url={link.url} />
-                </td>
-                <td className="history__visits">{link.redirectCount}</td>
-                <td className="history__last-visited">
-                  {distanceInWordsToNow(link.startDate)}
-                </td>
-              </tr>
-            ))}
+            {this.props.links.map(link => {
+              const stats = this.props.stats[link.shortcode] || {};
+              return (
+                <tr key={link.shortcode} className="history__row">
+                  <td className="history__link">
+                    <LinkInfo shortcode={link.shortcode} url={link.url} />
+                  </td>
+                  <td className="history__visits">{stats.redirectCount}</td>
+                  <td className="history__last-visited">
+                    {distanceInWordsToNow(stats.startDate)}
+                  </td>
+                </tr>
+              );
+            })}
             <tr className="history__row">
               <td className="history__link">
                 <LinkInfo
