@@ -34,37 +34,21 @@ export class History extends React.Component {
               return (
                 <tr key={link.shortcode} className="history__row">
                   <td className="history__link">
-                    <LinkInfo shortcode={link.shortcode} url={link.url} />
+                    <LinkInfo
+                      shortcode={link.shortcode}
+                      url={link.url}
+                      active={this.props.lastAdded === link.shortcode}
+                    />
                   </td>
                   <td className="history__visits">{stats.redirectCount}</td>
                   <td className="history__last-visited">
-                    {stats.startDate
-                      ? distanceInWordsToNow(stats.startDate)
-                      : ""}
+                    {stats.lastSeenDate
+                      ? `${distanceInWordsToNow(stats.lastSeenDate)} ago`
+                      : "never"}
                   </td>
                 </tr>
               );
             })}
-            <tr className="history__row">
-              <td className="history__link">
-                <LinkInfo
-                  shortcode="asdfjkk78"
-                  url="http://polandtripsri.blogspot.com/2016/07/blog-post_63.html"
-                />
-              </td>
-              <td className="history__visits">100</td>
-              <td className="history__last-visited">now</td>
-            </tr>
-            <tr className="history__row">
-              <td className="history__link">
-                <LinkInfo
-                  shortcode="asdfjkk78"
-                  url="https://unsplash.com/photos/cNgsAdd4-m4"
-                />
-              </td>
-              <td className="history__visits">100</td>
-              <td className="history__last-visited">66 minutes ago</td>
-            </tr>
           </tbody>
         </table>
       </div>

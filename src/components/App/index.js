@@ -2,9 +2,6 @@ import React from "react";
 import { Header, Shoort, History } from "../../components";
 import { create, get, stats } from "../../api";
 
-const linksCompare = (l, r) =>
-  Date.parse(l.startDate) - Date.parse(r.startDate);
-
 export class App extends React.Component {
   state = {
     links: [],
@@ -19,6 +16,7 @@ export class App extends React.Component {
           links={this.state.links}
           stats={this.state.shortCodeToStat}
           onClear={this._handleClear}
+          lastAdded={this.state.lastAdded}
         />
       </div>
     );
@@ -59,14 +57,14 @@ export class App extends React.Component {
       .then(({ shortcode }) => Promise.all([shortcode, stats(shortcode)]))
       .then(([shortcode, stats]) => {
         this.setState(state => {
-          const links = [].concat(state.links, { shortcode, url });
-          links.sort(linksCompare);
+          const links = [].concat({ shortcode, url }, state.links);
           return {
             links,
             shortCodeToStat: {
               ...state.shortCodeToStat,
               [shortcode]: stats
-            }
+            },
+            lastAdded: shortcode
           };
         });
       });

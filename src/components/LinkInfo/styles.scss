@@ -9,7 +9,7 @@
   display: inline-block;
   cursor: pointer;
 }
-.link-info::before {
+.link-info--active::before {
   content: "";
   position: absolute;
   top: 0;
