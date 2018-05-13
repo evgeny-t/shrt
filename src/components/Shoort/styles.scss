@@ -1,0 +1,31 @@
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+.shoort {
+  // outline: 4px dashed pink;
+  display: flex;
+  box-sizing: border-box;
+  padding: 20px 0px;
+}
+.shoort__input {
+  flex: 1;
+  background: $light-bg-color;
+  margin-right: 20px;
+
+  border: none;
+  padding: 0px 15px;
+  border-radius: $bradius;
+  @include typography-normal();
+}
+.shoort__btn {
+  cursor: pointer;
+
+  border: none;
+  padding: 10px 15px;
+  border-radius: $bradius;
+  @include typography-normal();
+}
+.shoort__btn--disabled {
+  background: $disabled-btn-bg-color;
+  color: $disabled-btn-color;
+}
