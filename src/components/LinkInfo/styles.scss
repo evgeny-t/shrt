@@ -1,0 +1,47 @@
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+.link-info {
+  // outline: 1px solid goldenrod;
+  position: relative;
+  text-align: left;
+  max-width: 400px;
+  display: inline-block;
+  cursor: pointer;
+}
+.link-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -10px;
+  display: block;
+  width: $stripe-width;
+  border-radius: $bradius;
+  background: $accent-color;
+}
+.link-info__shortened {
+  @include typography-urlbody();
+  color: $primary-color;
+  margin: 8px 0px;
+}
+.link-info__hint {
+  visibility: hidden;
+  margin-left: 30px;
+  color: $accent-color;
+  @include typography-normal();
+}
+.link-info:hover .link-info__hint {
+  visibility: visible;
+}
+.link-info__original {
+  @include typography-urlbody();
+  color: $unimportant-color;
+  margin: 8px 0px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.link-info__accent {
+  color: $accent-color;
+}
