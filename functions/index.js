@@ -2,7 +2,12 @@ const axios = require("axios");
 const api = "https://impraise-shorty.herokuapp.com/";
 
 exports.proxy = (req, res) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+  if (
+    /^https?:\/\/localhost/.test(req.headers.origin) ||
+    req.headers.origin.startsWith("https://wonderful-clarke-dc2ea9.netlify.com")
+  ) {
+    res.set("Access-Control-Allow-Origin", req.headers.origin);
+  }
   res.set("Access-Control-Allow-Methods", "GET,POST");
   res.set("Access-Control-Allow-Headers", "Content-Type");
   console.log("req", req.method, req.path, req.body);
