@@ -10,7 +10,7 @@ export const create = url => {
     body: JSON.stringify({
       url
     })
-  }).then(response => response.json());
+  }).then(response => (response.ok ? response.json() : Promise.reject()));
 };
 
 export const get = shortcode => {

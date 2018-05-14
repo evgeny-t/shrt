@@ -29,6 +29,13 @@ export class Shoort extends React.Component {
         >
           Shorten this link
         </button>
+        <div
+          className={cx("shoort__error", {
+            "shoort__error--visible": this.props.error
+          })}
+        >
+          Something bad happened. Please try again in a moment.
+        </div>
       </div>
     );
   }
@@ -40,7 +47,9 @@ export class Shoort extends React.Component {
   _handleClick = () => {
     const result = this.props.onShorten(this.state.value);
     if (result && result.then) {
-      result.then(() => this.setState({ value: "" }));
+      result
+        .then(() => this.setState({ value: "" }))
+        .catch(error => console.error(error));
     }
   };
 }

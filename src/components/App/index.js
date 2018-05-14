@@ -16,13 +16,14 @@ const restore = key => {
 export class App extends React.Component {
   state = {
     links: [],
-    shortCodeToStat: {}
+    shortCodeToStat: {},
+    error: null
   };
   render() {
     return (
       <div>
         <Header />
-        <Shoort onShorten={this._handleShorten} />
+        <Shoort onShorten={this._handleShorten} error={this.state.error} />
         <History
           links={this.state.links}
           stats={this.state.shortCodeToStat}
@@ -71,6 +72,7 @@ export class App extends React.Component {
         this.setState(state => {
           const links = [].concat({ shortcode, url }, state.links);
           return {
+            error: null,
             links,
             shortCodeToStat: {
               ...state.shortCodeToStat,
@@ -79,6 +81,10 @@ export class App extends React.Component {
             lastAdded: shortcode
           };
         });
+      })
+      .catch(error => {
+        this.setState({ error });
+        throw error;
       });
   };
 
