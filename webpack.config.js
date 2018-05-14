@@ -20,7 +20,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Shoooort'
+    }),
     new MiniCssExtractPlugin(),
     // new BundleAnalyzerPlugin()
   ],
